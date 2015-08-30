@@ -1,0 +1,100 @@
+#:kivy 1.9.0
+
+<HomeScreen@Screen>:
+    name: 'home'
+
+    BoxLayout:
+        orientation: 'horizontal'
+
+        Button:
+            text: "Edit"
+            # TODO: add icon
+            on_press:
+                # TODO: save state
+                root.manager.current = 'database'
+
+        Button:
+            text: "Use"
+            # TODO: add icon
+            on_press:
+                # TODO: save state
+                root.manager.current = 'database'
+
+<ToolsScreen@Screen>:
+    name: 'tools'
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        Button:
+            text: "Import"
+
+        Button:
+            text: "Export"
+
+<DatabaseScreen@Screen>:
+    name: 'database'
+
+    BoxLayout:
+        orientation: 'horizontal'
+
+        Button:
+            text: "Songs"
+            # TODO: add icon
+            on_press:
+                root.manager.current = 'songs'
+
+        Button:
+            text: "Setlists"
+            # TODO: add icon
+            on_press:
+                root.manager.current = 'setlists'
+
+<SongsScreen@Screen>:
+    name: 'songs'
+
+    ListView:
+        # TODO: list available songs from database
+
+<SetlistsScreen@Screen>
+    name: 'setlists'
+
+    ListView:
+        # TODO: list available setlists from database
+
+# Main
+BoxLayout:
+    orientation: 'vertical'
+
+    ActionBar:
+
+        ActionView:
+            id: av
+
+            ActionPrevious:
+                id: ap
+                with_previous: False  # TODO: add handler code
+                text: "Home"
+                on_press:
+                    sm.current = 'home'
+
+            ActionButton:
+                text: "Tools"
+                # TODO: add icon
+                on_press:
+                    sm.current = 'tools'
+
+            ActionButton:
+                text: "Settings"
+                # TODO: add icon
+                on_press:
+                    app.open_settings()
+
+    ScreenManager:
+        id: sm
+
+        HomeScreen
+        ToolsScreen
+        DatabaseScreen
+        SongsScreen
+        SetlistsScreen
